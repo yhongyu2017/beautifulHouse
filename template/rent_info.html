@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="shortcut icon" href="./{{static_url('image/seven01.ico')}}" type="image/x-icon">
+<title>{{result['renting_title']}}</title>
+<link href="{{static_url('css/style.css')}}}" rel=stylesheet>
+<link rel="stylesheet" type="text/css" href="{{static_url('css/house_info01.css')}}">
+<script src="{{static_url('js/jquery-1.8.3.min.js')}}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="{{static_url('js/jquery.js')}}"></script>
+<script type="text/javascript" src="{{static_url('js/jquery.jslides.js')}}"></script>
+<script type="text/javascript">
+var user;
+ function delete1(id)
+ {
+	 localStorage.removeItem(id);
+	 this.Storage.writeData();
+ }
+var Storage =
+{
+  saveData:function()//保存数据
+  {
+
+		  var data = document.querySelector("#post textarea");
+	  if(data.value != "")
+	  {
+		  var time = new Date().getTime() + Math.random() * 5;//getTime是Date对象中的方法，作用是返回 1970年01月01日至今的毫秒数
+		  if (user) {
+			  localStorage.setItem(time, data.value + "|" + user + "|" + this.getDateTime());//将毫秒数存入Key值中，可以降低Key值重复率
+		  }
+		  else
+		  {
+			  localStorage.setItem(time, data.value + "|" + "匿名发言者" + "|" + this.getDateTime());//将毫秒数存入Key值中，可以降低Key值重复率
+		  }
+
+		  data.value = "";
+		  this.writeData();
+	  }
+	  else
+	  {
+		  alert("请填写您的留言！");
+	 }
+  },
+  writeData:function()//输出数据
+  {
+	 var dataHtml = "", data = "";
+	  for(var i = localStorage.length-1; i >= 0; i--)//效率更高的循环方法
+	  {
+		  data = localStorage.getItem(localStorage.key(i)).split("|");
+
+			  //dataHtml += "<p><span class=\"msg\">" + data[0] + "</span><span class=\"datetime\">" + data[1] + "</span><span>" + data[2]+"</span></p>";
+		  dataHtml += "<span style=>" + data[1] + "<span style=\"float:right\">" + data[2] + "</span><p><span class=\"msg\">" + data[0] + "</span></p>";
+	  }
+
+	  document.getElementById("comment").innerHTML = dataHtml;
+  },
+  getDateTime:function()//获取日期时间，例如 2012-03-08 12:58:58
+  {
+	  var isZero = function(num)//私有方法，自动补零
+	  {
+		  if(num < 10)
+		 {
+			  num = "0" + num;
+		  }
+		  return num;
+	  }
+
+	  var d = new Date();
+	  return d.getFullYear() + "-" + isZero(d.getMonth() + 1) + "-" + isZero(d.getDate()) + " " + isZero(d.getHours()) + ":" + isZero(d.getMinutes()) + ":" + isZero(d.getSeconds());
+  }
+}
+
+window.onload = function()
+{
+  Storage.writeData();//当打开页面的时候，先将localStorage中的数据输出一边，如果没有数据，则输出空
+  document.getElementById("postBt").onclick = function(){Storage.saveData();}//发表评论按钮添加点击事件，作用是将localStorage中的数据输出
+//document.getElementById("clearBt").onclick = function(){Storage.clearData();}//清空所有已保存的数据
+}
+</script>
+</head>
+<body class="vbody">
+	<div class="header">
+		<div class="main"> 
+		  <a href="" class="logo"><img src="{{static_url('image/logo.jpg')}}" width="446" height="48"/></a>
+		<div class="tel">
+		 <div class="telnum">联系我们：<span>888-888-88888</span></div>
+		 <div class="telphone"><img src="{{static_url('image/telphone.jpg')}}" width="57" height="57" /></div>
+		</div>
+	  </div>
+	</div>
+	<div class="cbanner"><img src="{{static_url('image/banner1.jpg')}}" width="100%" height="351" /></div>
+
+	<div class="menu">
+	  <ul>
+		  <li><a href="/index">首页</a></li>
+		  <li><a href="/about_us">关于我们</a></li>
+		  <li><a href="/third_rent">第三方租房</a></li>
+		  <li><a href="/rent">租房点我呀</a></li>
+		  <li><a href="/release">发布点我呀</a></li>
+		  <li><a href="/advice">投诉建议</a></li>
+		  <li><a href="/user">个人中心</a></li>
+	  </ul>
+	</div>
+	<div id="sx-nav">
+		<div class="sousuo clearfix">
+			<div class="select-result clearfix">
+				<ul>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript" src="{{static_url('js/nav1js.js')}}"></script>
+	</div>
+	<!-- 房屋信息模块 -->
+	<div class="house_address">
+		<a href="/rent">七怪房源</a>&nbsp;>&nbsp;
+		<a href="#">{{result['city']}}</a>
+		<a href="#">{{result['region']}}</a>
+	</div>
+	<div class="wrapper">
+		<h3 class="house_title">{{result['renting_title']}}</h3>
+		<div class="title_info_clearfix">
+			<span class="light info_tag"><em>{{result['renting_price']}}</em>元/月</span>
+			<span class="info_tag">
+            <em>{{result['door_model'][0]}}</em>室<em>{{result['door_model'][2]}}</em>厅
+			</span>
+			<span class="info_tag no_line"><em>{{result['renting_area']}}</em></span>
+			<ul class="title_label cf">
+				<li class="title_label_item rent">{{result['rent_type']}}</li>
+				<li class="title_label_item buy">{{result['renting_orientation']}}</li>
+				<li class="title_label_item subway">{{result['near_subway']}}</li>
+			</ul>
+		</div>
+		<div class="mainbox">
+			<div class="lbox">
+				<div class="switch_warpper"><img src="{{static_url('image/1473126771299-1472804020099-_MG_4601.jpg')}}" class="img"></div>
+				<div id="" class="mod_title bottomed">
+					<h3 id="houseInfo" class="titles nav_scroll">房屋信息</h3>
+					<div class="right_info">发布时间：{{result['release_time']}}</div>
+				</div>
+				<ul class="house-info-zufang cf">
+					<li class="full-line cf">
+						<span class="price"><em>{{result['renting_price']}}</em>元/月</span>
+						<span class="type">押一付三</span>
+					</li>
+					<li class="house-info-item l-width">
+						<span class="type">户型：</span>
+						 <span class="info">{{result['door_model']}}</span>
+					</li>
+					<li class="house-info-item">
+						<span class="type">面积：</span>
+						<span class="info">{{result['renting_area']}}</span>
+					</li>
+					 <li class="house-info-item">
+						<span class="type">朝向：</span>
+						<span class="info">{{result['renting_orientation']}}</span>
+					</li>
+					<li class="house-info-item l-width">
+						<span class="type">楼层：</span>
+						<span class="info">{{result['renting_floor']}}</span>
+					</li>
+					<li class="house-info-item">
+						<span class="type">装修：</span>
+						<span class="info">{{result['renting_fitment']}}</span>
+					</li>
+					<li class="house-info-item">
+						<span class="type">类型：</span>
+						<span class="info">{{result['house_type']}}</span>
+					</li>
+					<li class="house-info-item l-width">
+						<span class="type">小区：</span>
+                        <span class="info">{{result['renting_address']}}</span>
+				 </ul>
+				 <div class="mod-title bottomed">
+                    <h3 class="title">房源概况</h3>
+                </div>
+                <div class="auto-general">
+					{{result['renting_detail']}}
+                    <!--<p> 你理想的生活只差一个达人寓！！！</p>-->
+					<!--<p> <span>达人寓直租！不收中介fei！实景拍摄！紧邻地铁！随时看房！免费</span>WIFI</p>-->
+					<!--<p> 生活有讲究，达人不将就！</p>-->
+					<!--<p> 【拒绝中介和乱收费】</p>-->
+					<!--<p> <span>我们和你一和样，拒绝中介。同时包网费和物业，替你省心。从</span>CEO<span>到普通员工，公司都是</span><span>80/90</span><span>后，也都曾经经历过被房东赶出门、被中介骗得咬牙的痛苦</span></p>-->
+					<!--<p> 【房间情况】</p>-->
+					<!--<p> <span>房间选址安静宜居、出行便利，达人寓设计师根据年轻人喜好打造清新舒适的欧式公寓。室内配套免费的达人寓标配床垫、抱枕、台灯、防疲劳桌椅、衣柜、挂衣钩、壁画、带</span>USB<span>巨型插板、清凉一夏的空调、洗衣机、冰箱和厨房，全新配置和</span><span>24H</span><span>免费畅享高速宽带。每双周免费保洁，小区绿化</span><span>30</span><span>以上。管家随时带看，只为下班后的您住的安心、住的舒心</span></p>-->
+					<!--<p> 【周边设施】</p>-->
+					<!--<p> <span>住房也要方便出行，达人</span>9<span>成房源小区门口就是地铁站或公交站；周边西餐厅、各种随时叫外卖的中餐厅、公园、影院、</span><span>KTV</span><span>、菜市场和运动场环绕其中，生活办公两不误</span></p>-->
+					<!--<p> 【温馨提示】</p>-->
+					<!--<p> 房间照片实景拍摄，随时都能看房，拎包入住！</p>-->
+					<!--<p> <span>详情电话联系客服</span>1<span>*内直接给您分配管家带看哦！</span></p>                -->
+				</div>
+			</div>	
+			<div class="rbox">
+				<div id="" class="broker-card">
+					<div id="" class="broker-border">
+						<img src="{{static_url('image/default.jpg')}}" class="broker-photo" title="发布者">
+						<h2 class="broker-name">房源发布者: {{result['user_name']}}</h2>
+						<div id="" class="broker-line">
+							<em>电话：</em>{{result['user_phone']}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="content">
+				<div id="post">
+					<div style="background:#3EADC5 ;height:15px;">
+					</div>
+					<div>
+						<input type="hidden" name="renting_id", value="{{result['renting_id']}}">
+						<textarea class="transition"></textarea>
+					</div>
+					<button id="postBt" style="border:none; background-color:#3EADC5; color:white;border-radius:5px; width:80px; height:30px;" />发表评论</button>
+					<!--<input id="clearBt" type="button" style="border:none; background-color:#3EADC5; color:white;border-radius:5px; width:80px; height:30px;" value="清空"/>-->
+				</div>
+                        <div id="comment"></div>
+			</div>
+		</div>
+	</div>
+	<div class="bootTxt"> 
+	<div class="text">地址：北京市大兴区亦庄经济发展区科创十三街达内教育中心&nbsp;&nbsp;&nbsp;&nbsp;座机：888-8888-888&nbsp;&nbsp;&nbsp;&nbsp;手机：1388888888<br />版权所有：<a
+			href="/about_us">七怪团队</a>&nbsp;&nbsp;&nbsp; 技术支持：<a href="/about_us" >七怪团队</a>&nbsp;&nbsp;&nbsp; ICP备案编号：<a href="">ICP备********号</a></div>
+	</div>
+	</div>
+	</body>
+<script type="text/javascript">
+	$('#postBt').click(function () {
+	    var renting_id = $('input[name=renting_id]').val();
+		var comment = $('.transition').val();
+
+		$.ajax({
+			type: 'POST',
+			url: '/comment',
+			data: {'renting_id': renting_id, 'comment': comment},
+			dataType: 'json',
+			success: function (data) {
+				if(data.result == 'ok'){
+				    alert('ok');
+				}else if(data.result == 'nuid'){
+				    alert('请登录');
+				    window.location.href = '/login'
+				}
+				else{
+				    alert('fail');
+				}
+            },
+			error: function () {
+				alert('error');
+            }
+		});
+    });
+</script>
+</html>

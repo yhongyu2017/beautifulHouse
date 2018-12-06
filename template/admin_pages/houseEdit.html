@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>七怪房源后台管理系统</title>
+  <link rel="stylesheet" href="{{static_url('layui/css/layui.css')}}">
+</head>
+<div class="layui-container">
+    <div class="layui-row">
+        <div class="layui-col-lg12">
+            <fieldset class="layui-elem-field">
+                <legend>编辑房源信息</legend>
+                <div class="layui-field-box">
+                    <form class="layui-form" action="">
+                        <input type="hidden" name="renting_id" value="{{result['renting_id']}}">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">房源头</label>
+                            <div class="layui-input-block">
+                            <input type="text" name="renting_title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input" value="{{result['renting_title']}}">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">发布者</label>
+                            <div class="layui-input-inline">
+                            <input type="text" name="user_name" required lay-verify="required" placeholder="发布者" readonly autocomplete="off" class="layui-input" value="{{result['user_name']}}">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">邮&nbsp;&nbsp;&nbsp;&nbsp;箱</label>
+                            <div class="layui-input-inline">
+                            <input type="email" name="user_email" required lay-verify="required" placeholder="邮箱" readonly autocomplete="off" class="layui-input" value="{{result['user_email']}}">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">所在地</label>
+                            <div class="layui-input-block">
+                            <select name="region" lay-verify="required">
+                                <option value="{{result['region']}}">{{result['region']}}</option>
+                                <option value="丰台">丰台</option>
+                                <option value="朝阳">朝阳</option>
+                                <option value="西城">西城</option>
+                                <option value="东城">东城</option>
+                                <option value="大兴">大兴</option>
+                            </select>
+                            </div>
+                        </div>
+                        <!--<div class="layui-form-item">-->
+                            <!--<label class="layui-form-label">复选框</label>-->
+                            <!--<div class="layui-input-block">-->
+                            <!--<input type="checkbox" name="like[write]" title="写作">-->
+                            <!--<input type="checkbox" name="like[read]" title="阅读" checked>-->
+                            <!--<input type="checkbox" name="like[dai]" title="发呆">-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="layui-form-item">-->
+                            <!--<label class="layui-form-label">单选框</label>-->
+                            <!--<div class="layui-input-block">-->
+                            <!--<input type="radio" name="sex" value="男" title="男">-->
+                            <!--<input type="radio" name="sex" value="女" title="女" checked>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">文本域</label>
+                            <div class="layui-input-block">
+                            <textarea name="renting_detail" placeholder="请输入内容" class="layui-textarea">{{result['renting_detail']}}</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                            <button id="houseUpdate" class="layui-btn" lay-submit lay-filter="formDemo">保存</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{{static_url('javascript/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{static_url('layui/layui.js')}}"></script>
+<script type="text/javascript" src="{{static_url('javascript/dw_form_submit.js')}}"></script>
+</body>
+<script type="text/javascript">
+    $(function () {
+       $('#houseUpdate') .click(function () {
+           // 获取信息要编辑的房源信息
+           var renting_id = $('input[name=renting_id]').val();
+           var renting_title = $('input[name=renting_title]').val();  // 标题
+           var user_name = $('input[name=user_name]').val();  // 发布者
+           var user_email = $('input[name=user_email]').val();  // 发布者邮箱
+           var obj = $('select[name=region] option:selected');  // 获取下拉框的节点
+           var region = obj.text();                                    // 获取选中的文本内容
+           var renting_detail = $('textarea[name=renting_detail]').val();  // 获取房源的详细信息
+
+           // 将信息发送给后台，并将返回的结果进行简单的处理
+           // 请求方式：ajax
+           // 请求类型：post
+           // 请求数据：获取的数据
+           // 接收的数据格式：json
+           // 处理：success，error
+           $.ajax({
+               type: 'POST',
+               url: '/admin/houseEdit',
+               data: {
+                   'renting_id': renting_id,
+                   'renting_title': renting_title,
+                   'user_name': user_name,
+                   'user_email': user_email,
+                   'region': region,
+                   'renting_detail': renting_detail
+               },
+               dataType: 'json',
+               success: function (data) {
+                    if(data.result == 'ok'){
+                        layer.msg('保存成功');
+                    }else{
+                        layer.msg('保存失败');
+                    }
+               },
+               error: function (jqXHR) {
+                   layer.msg('对不起，网络出问题了。。。。');
+               }
+           });
+       });
+    });
+</script>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{static_url('layui/css/layui.css')}}">
+    <style>
+        .display_admin{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    {% include 'temp_header.html' %}
+    <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item"><a class="layui-this" href="/admin/index">待审核</a></li>
+        <!--<li class="layui-nav-item">-->
+          <!--<a href="javascript:;">用户管理</a>-->
+          <!--<dl class="layui-nav-child">-->
+            <!--<dd><a href="userList.html">用户列表</a></dd>-->
+          <!--</dl>-->
+        <!--</li>-->
+
+        <!--<li class="layui-nav-item">-->
+            <!--<a href="javascript:;">房东管理</a>-->
+            <!--<dl class="layui-nav-child">-->
+                <!--<dd><a href="hostList.html">房东列表</a></dd>-->
+            <!--</dl>-->
+        <!--</li>-->
+
+        <li class="layui-nav-item" id="super_admin">
+            <a href="javascript:;">管理员管理</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/admin/adminList">管理员列表</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">用户评论管理</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/admin/commentList">评论列表</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">用户建议管理</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/admin/adviceList">建议列表</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">房源信息管理</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/admin/houseList">房源信息列表</a></dd>
+            </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="{{static_url('js/jquery-1.8.3.min.js')}}"></script>
+<script type="text/javascript" src="{{static_url('javascript/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{static_url('layui/layui.js')}}"></script>
+<script type="text/javascript" src="{{static_url('javascript/index.js')}}"></script>
+<script type="text/javascript">
+    // 主页的用户名显示
+    $(function () {
+        var msg = '';
+        $.ajax({
+            type: 'POST',
+            url: '/admin/index',
+            data: {},
+            dataType: 'json',
+            success:function (data) {
+                if (data.admin_is_login == '1'){
+                    if(data.admin_name == 'admin'){
+                        msg = '超级管理员： ' + data.admin_name;
+                    }else{
+                        msg = '管理员： ' + data.admin_name;
+                        document.getElementById('super_admin').style.display='none';
+                    }
+                    // document.getElementById('please_login').style.display = "none";
+                    document.getElementById('admin_name').innerHTML = msg;
+                    var admin_logout = document.getElementById('admin_logout');
+                    var oA = document.createElement('a');
+                    oA.href = '/admin/logout';
+                    oA.innerHTML = ' 退出登录';
+                    admin_logout.appendChild(oA);
+                }else{
+                    alert('亲，您还没登录呢，立即登录吧');
+                    // document.getElementById('please_login').style.display = "block";
+                    // document.getElementById('admin_status').style.display = "none";
+                    window.location.href = '/admin/login';
+                }
+            },
+            error:function(jqXHR){
+                alert('拉取信息失败');
+            }
+        });
+    })
+</script>
+</html>

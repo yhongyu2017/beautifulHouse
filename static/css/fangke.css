@@ -1,0 +1,106 @@
+.tips {
+    padding-left: 103px;
+    color: #EE3844;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+.house-type {
+    height: 80px;
+    width: 353px;
+    margin: 0 auto;
+}
+.house-type>div {
+	border-radius:200px;
+	margin-left:113px;
+    padding: 5px 15px;
+    border-radius: 4px;
+    float: left;
+}
+.house-type>div:nth-child(2) {
+    margin-left: 69px;
+    border: 1px solid lightgray;
+	color:black;
+}
+.type-active {
+    color: #EE3844;
+    border: 1px solid #2196f3!important;
+    background-image: url(../images/createhouse/selected.png);
+    background-position: 67px 12px;
+    background-repeat: no-repeat;
+}
+.steps {
+    background: #ee384400;
+    width: 250px;
+    height: 50px;
+    margin: 0 auto;
+    line-height: 50px;
+    border-radius: 4px;
+    color:#FFF;
+    text-align: center;
+    font-size: 16px;
+}
+.form-content>div {
+    margin-left: 30%;
+    width: 100%;
+    position: relative;
+}
+.step-items>div {
+    width: 150px;
+ 
+    display: inline-block;
+    padding-right: 10px;
+	color:black;
+	font-size:20px;
+	  
+
+}
+
+createHouse.css?20180904:110
+.steps-active {
+    color: #EE3844;
+    position: relative;
+}
+.input-title {
+	margin-left:328px;
+    display: inline-block;
+    width: 100px;
+    text-align: end;
+    margin-right: 24px;
+
+}
+.input-title1 {
+    display: inline-block;
+    width: 100px;
+    text-align: end;
+    margin-right: 30px;
+.tips {
+    padding-left: 103px;
+    color: #EE3844;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+.form-content>div {
+    margin-left: 30%;
+    width: 100%;
+    position: relative;
+}
+.small-input {
+    width: 80px;
+    display: inline-block;
+}
+
+.form-content>div {
+    margin-left: 30%;
+    width: 100%;
+    position: relative;
+}
+
+.input-unit {
+	margin-left:328px;
+    display: inline-block;
+    width: 50px;
+    text-align: center;
+}
+

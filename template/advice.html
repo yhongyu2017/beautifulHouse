@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>七怪房源</title>
+<link href="/static/css/style.css" rel=stylesheet>
+<link rel="stylesheet" type="text/css" href="{{static_url('css/nav1.css')}}"/>
+<script src="{{static_url('js/jquery-1.8.3.min.js')}}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="{{static_url('js/jquery.js')}}"></script>
+<script type="text/javascript" src="{{static_url('js/jquery.jslides.js')}}"></script>
+<link rel="stylesheet" href="{{static_url('css/base5.css')}}">
+<link rel="stylesheet" href="{{static_url('css/advice.css')}}">
+
+<script type="text/javascript" src="http://image.wanda.cn/statics/js/web/jquery/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://image.wanda.cn/statics/js/web/common.js"></script>
+<script type="text/javascript">
+var JS_PATH = "http://image.wanda.cn/statics/js/";
+var VIDEO_URL = "";
+var UPLOAD_URL = "http://www.wanda.cn/uploadfile/";
+
+
+
+</script>
+</head>
+<body class="vbody">
+<div class="header">
+    
+    <div class="main"> 
+      <a href="" class="logo"><img src="{{static_url('image/logo.jpg')}}" width="446" height="48"/></a>
+    <div class="tel">
+     <div class="telnum">联系我们：<span>888-888-88888</span></div>
+     <div class="telphone"><img src="{{static_url('image/telphone.jpg')}}" width="57" height="57" /></div>
+    </div>
+  </div>
+</div>
+<div class="cbanner"><img src="{{static_url('image/banner1.jpg')}}" width="100%" height="351" /></div>
+
+<div class="menu">
+  <ul>
+      <li><a href="/index">首页</a></li>
+      <li><a href="/about_us">关于我们</a></li>
+      <li><a href="/third_rent">第三方租房</a></li>
+      <li><a href="/rent">租房点我呀</a></li>
+      <li><a href="/release">发布点我呀</a></li>
+      <li><a href="">投诉建议</a></li>
+      <li><a href="/user">个人中心</a></li>
+  </ul>
+</div>
+
+<div class="fyRight">
+  <div class="title">
+     <span class="fl">投诉建议</span>
+  </div>
+</div>
+<div class="main ffb">
+            <div class="b1s pr8 pl8">
+                <div class="pl20 pr20 pb25">
+		<!--<h2 class="h1 f18 mt20 mb10">投诉和建议</h2>-->
+		<br />
+		<br />
+                    <dl class="cf pt10 pb20 dl2">
+                        <p class="t2 c6 cnp lh21 f14"><span style="color:#0061BC;"><span class="fs">“</span>聆听客户声音，真诚服务客户<span class="fs">”</span></span>是七怪房源一贯的追求。为持续提升服务品质，七怪房源自20018年起成立了专职部门负责客户服务，受理各类投诉与建议、监督各公司客户服务质量，以实现为客户创造价值，与客户合作共赢的服务目标。</p>
+                    </dl>
+                    <form action="" method="post" target="hidden_frame" enctype="multipart/form-data">
+                    <div class="bcf9 mt30 pl5 complain pb80">
+                        <div class="pt10 mb30" style="*margin-bottom:20px;">
+                            <h2 class="f18 c3 fb fl ml25">在线投诉</h2>
+                            <div class="clearfloat"></div>
+                        </div>
+                        <div class="f14 c6 mb10">
+                            <label class="top"><span>*</span> 类型：</label>
+                            <input type="text", name="advice_type", placeholder="请输入建议类型">
+                        </div>
+                        <div class="f14 c6 mb10">
+                            <label class="top"><span>*</span> 内容：</label>
+                            <textarea name="Remarks" class="textarea1 Remarks" style="resize:none;border: #0C0C0C 1px solid;"></textarea>
+                        </div>
+                        <div class="btns tc mt40">
+                            <input type="hidden" value="1" name="ComplaintType">
+                            <button class="mr50" type="submit" name="dosubmit" value="1">提交</button>
+                             <iframe name="hidden_frame" id="hidden_frame" style="display:none;"></iframe>
+                            <button type="reset">重置</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+ 	
+<div class="bootTxt"> 
+ 	<div class="text">
+ 	地址：北京市大兴区亦庄经济发展区科创十三街达内教育中心&nbsp;&nbsp;&nbsp;&nbsp;座机：888-8888-888&nbsp;&nbsp;&nbsp;&nbsp;手机：1388888888<br />版权所有：七怪团队&nbsp;&nbsp;&nbsp; 技术支持：<a href="" >七怪团队</a>&nbsp;&nbsp;&nbsp; ICP备案编号：<a href="">ICP备********号</a>
+ 	</div>
+</div>
+</body></html>
+<script type="text/javascript">
+    $("button[name=dosubmit]").click(function () {
+        var advice_type = $('input[name=advice_type]').val();
+        var advice_content = $('.textarea1').val();
+        if(advice_type == '' || advice_type == null){
+            alert('请输入建议类型');
+            return false
+        }
+        if(advice_content == '' || advice_content == null){
+            alert('请输入建议的内容');
+            return false
+        }
+        $.ajax({
+            type: 'POST',
+            url: '/advice',
+            data: {
+                'advice_type': advice_type,
+                'advice_content': advice_content
+            },
+            dataType: 'json',
+            success: function (data) {
+                if(data.result=='ok'){
+                    alert('ok');
+                    window.location.href=window.location.href
+                }
+                else{
+                    alert('fail');
+                }
+            },
+            error: function () {
+                alert('网络出问题了。。。。')
+            }
+        });
+    });
+</script>
+<script>
+
+</script>

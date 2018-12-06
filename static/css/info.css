@@ -1,0 +1,60 @@
+/*house_info*/
+.house_info{
+	width:100%;
+}
+.zu_tab{
+	width:1004px;
+	height:60px;
+	margin:0 auto;
+	border-bottom:2px solid #5D7C74;
+}
+.zu_tab a{
+	display:inline-block;
+	margin-top:20px;
+	background:#5D7C74;
+	width:80px;
+	height:40px;
+	font-size:18px;
+	line-height:40px;
+	text-align:center;
+	color:#ffffff;
+}
+.zu_sort{
+	height:40px;
+	width:1004px;
+	margin:0 auto;
+	line-height:40px;
+	font-size:16px;
+	border-bottom:1px solid #E3E3E3;
+}
+.zu_sort em{
+	color:orange;
+}
+.sort_right{
+	float:right;
+}
+.clearfix{
+	clear:both;
+}
+.zu_itemmod{
+	width:964px;
+	height:136px;
+	padding:20px;
+	margin:0 auto;
+	border-bottom:1px dashed #e6e6e6;
+}
+.imags{float:left;}
+.zu_info{float:left;padding-left:20px;width:528px;overflow:hidden;font-size:14px;color:#797979}
+.zu_itemmod .zu_info h3{height:34px;line-height:34px;margin-bottom:6px}
+.zu_itemmod .zu_info h3 a{color:#333;max-width:420px;font-size:16px;font-weight:bold;display:inline-block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.zu_itemmod .zu_info .details_item{width:440px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;height:30px;line-height:30px;font-style:normal;}
+.zu_itemmod .zu_info .tag span{margin:0 10px;display:inline-block;margin-right:10px;width:1px;background:#ccc;height:10px;font-size:0;text-indent:-9999px;overflow:hidden}
+.zu_itemmod .zu_side{float:right;width:112px;white-space:nowrap}
+.zu_itemmod .zu_side p{width:100%;float:right;font-size:13px;color:#eb5f00;font-weight:bold;text-align:right;padding:40px 0 10px 0}
+.zu_itemmod .zu_side strong{font-size:22px;font-weight:bold;vertical-align:baseline}
+.zu_itemmod .zu_info .bot_tag span{float:left;padding:0 10px;line-height:22px;height:22px;font-size:12px;border-radius:16px;margin-right:10px;margin-top:8px}
+.zu_itemmod .zu_info .bot_tag .cls_1{background-color:#fcf4f1;color:#e88a78}
+.zu_itemmod .zu_info .bot_tag .cls_2{background-color:#f2f6ed;color:#799374}
+.zu_itemmod .zu_info .bot_tag .cls_3{background-color:#f0f4f8;color:#6682ae}
+
+

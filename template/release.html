@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="{{static_url('css/style.css')}}" rel=stylesheet>
+	<!-- 	<link href="css/fangke.css" rel=stylesheet>  -->
+	<link rel='stylesheet' href="{{static_url('css/fangke.css')}}" >
+	<script type="text/javascript" src="{{static_url('js/jquery-1.7.2.min.js')}}"></script>
+	<script type="text/javascript" src="{{static_url('js/picmain.js')}}"></script>
+
+</head>
+<body class="vbody">
+		<div class="header">
+			<div class="main"> 
+			  <a href="" class="logo"><img src="{{static_url('image/logo.jpg')}}" width="446" height="48"/></a>
+			<div class="tel">
+			 <div class="telnum">联系我们：<span>888-888-88888</span></div>
+			 <div class="telphone"><img src="{{static_url('image/telphone.jpg')}}" width="57" height="57" /></div>
+			</div>
+		  </div>
+		</div>
+	<div class="cbanner"><img src="{{static_url('image/banner1.jpg')}}" width="100%" height="351" /></div>
+<div class="menu">
+	  <ul>
+		  <li><a href="/index">首页</a></li>
+		  <li><a href="/about_us">关于我们</a></li>
+		  <li><a href="/third_rent">第三方租房</a></li>
+		  <li><a href="/rent">租房点我呀</a></li>
+		  <li><a href="">发布点我呀</a></li>
+		  <li><a href="/advice">投诉建议</a></li>
+		  <li><a href="/user">个人中心</a></li>
+	</ul>
+</div>
+<!--图片下边  -->
+<div class="fyRight">
+  <div class="title">
+     <span class="fl">发布房源</span>
+  </div>
+</div>
+
+<div id="formDetail" class="main out">
+	    <div class="title">
+	        <h1>填写您的基本信息，<span class="baletu-red">七怪房源</span>工作人员会尽快与您联系确认</h1>
+	    </div>
+	    </br />
+	    <div class="form-wrapper form-basic">
+	        <div class="form-content">
+	            <div>
+	                <div class="input-title1">姓名</div>
+	                <input type="text" name="user_name" readonly placeholder="请输入房东姓名" id="landlord_name" value="{{userManage['user_name']}}">
+					<input type="hidden" name="user_id" value="{{userManage['user_id']}}">
+					<p class="tips"></p>
+	            </div>
+	            <div>
+	                <div class="input-title1">电话</div>
+	                <input type="phone" name="lan_mobile" readonly value="{{userManage['user_phone']}}">
+	                <p class="tips"></p>
+	            </div>
+				<div>
+	                <div class="input-title1">邮箱</div>
+	                <input type="email" name="email" readonly value="{{userManage['user_email']}}">
+	                <p class="tips"></p>
+	            </div>
+				<div>
+	                <div class="input-title1">醒目标题</div>
+	                <input type="text" name="renting_title" placeholder="">
+	                <p class="tips"></p>
+	            </div>
+				<div>
+	                <div class="input-title1">城市</div>
+	                <input type="text" name="city" placeholder="" value="北京" readonly>
+	                <p class="tips"></p>
+	            </div>
+	            <div>
+	                <div class="input-title1">区</div>
+	                <input type="text" name="region" placeholder="丰台，朝阳等">
+	                <p class="tips"></p>
+	            </div>
+	            <div id="door-detail">
+	                <div class="input-title1">户型</div>
+	                <input type="text" name="door_model" class="door_model" placeholder="3室1厅">
+	                <p class="tips"></p>
+	            </div>
+				<div id="door-detail">
+	                <div class="input-title1">租房楼层</div>
+	                <input type="text" name="renting_floor" class="door_model" placeholder="18">
+	                <p class="tips"></p>
+	            </div>
+	        </div>
+	    </div>
+	<!--  ------------------------------------------------>
+	   <div class="form-wrapper form-basic">
+	            <div class="input-title" align="center">租金报价<span class="required">*</span></div>
+					<input type="text" name="renting_price" class="small-input" placeholder="" id="name">
+	
+	            	<p class="tips"></p>
+	            </div>
+	            <div>
+	                <div class="input-title">整套面积<span class="required">*</span></div>
+	                <input type="text" name="renting_area" class="small-input" placeholder="">
+	                <p class="tips"></p>
+	            </div>
+				<div>
+	                <div class="input-title">租房类型<span class="required">*</span></div>
+	                <input type="text" name="rent_type" class="small-input" placeholder="整租、合租">
+	                <p class="tips"></p>
+	            </div>
+				<div>
+	                <div class="input-title">房屋朝向<span class="required">*</span></div>
+	                <input type="text" name="renting_orientation" class="small-input" placeholder="南、北">
+	                <p class="tips"></p>
+	            </div>
+				<div>
+	                <div class="input-title">地铁<span class="required">*</span></div>
+	                <input type="text" name="near_subway" class="small-input" placeholder="地铁几号线附近">
+	                <p class="tips"></p>
+	            </div>
+				<div>
+	                <div class="input-title">房屋类型<span class="required">*</span></div>
+	                <input type="text" name="house_type" class="small-input" placeholder="公寓，酒店，居民住宅">
+	                <p class="tips"></p>
+	            </div>
+				<div>
+	                <div class="input-title">装修类型<span class="required">*</span></div>
+	                <input type="text" name="renting_fitment" class="small-input" placeholder="精装修，普通">
+	                <p class="tips"></p>
+	            </div>
+				<div>
+	                <div class="input-title">看房地址<span class="required">*</span></div>
+	                <input type="text" name="renting_address" class="small-input" placeholder="">
+	                <p class="tips"></p>
+	            </div>
+				<div>
+	                <div class="input-title">房屋信息<span class="">*</span></div>
+					<textarea type="text" name="renting_detail" class="small-input" placeholder=""></textarea>
+	                <p class="tips"></p>
+	            </div>
+
+	        <div>
+	            <div class="steps" id="next-todetail">
+					<button id="peng" class= 'fbSubmit' value=''> 提交</button>
+	            </div>
+	        </div>
+
+
+
+
+
+
+	</div>
+ <div class="bootTxt">
+	 <div class="text"> 地址：七怪市七怪区七怪街七号&nbsp;&nbsp;&nbsp;&nbsp;
+	 	座机：700-7777-777&nbsp;&nbsp;&nbsp;&nbsp;
+	 	手机：17012345678<br />版权所有:七怪&nbsp;&nbsp;&nbsp; 
+	 	技术支持：<a href="" >七怪网站建设公司</a>&nbsp;&nbsp;&nbsp; 
+	 	ICP备案编号：<a href="">ICP备1234567号</a>
+	  </div>  
+ </div>
+ </body>
+</html>
+
+
+
+<script type="text/javascript">
+	$('.fbSubmit').click(function () {
+	    var user_id = $('input[name=user_id]').val();
+		var user_name = $('input[name=user_name]').val();
+		var lan_mobile = $('input[name=lan_mobile]').val();
+		var email = $('input[name=email]').val();
+		var renting_title = $('input[name=renting_title]').val();
+
+		var city = $('input[name=city]').val();
+		var renting_floor = $('input[name=renting_floor]').val();
+		var renting_address = $('input[name=renting_address]').val();
+		var rent_type = $('input[name=rent_type]').val();
+		var renting_orientation = $('input[name=renting_orientation]').val();
+		var near_subway = $('input[name=near_subway]').val();
+		var house_type = $('input[name=house_type]').val();
+		var renting_fitment = $('input[name=renting_fitment]').val();
+		var renting_detail = $('textarea[name=renting_detail]').val();
+
+		var region = $('input[name=region]').val();
+		var door_model = $('input[name=door_model]').val();
+		var renting_price = $('input[name=renting_price]').val();
+		var renting_area = $('input[name=renting_area]').val();
+		if (lan_mobile == '' || lan_mobile == 'None' || email == '' || email == 'None'){
+		    alert('请先完善个人信息');
+		    return false
+		}else if (renting_title == '' || renting_title == null){
+		    alert('请给发布的房源加个醒目的标题吧！');
+		    return false
+		}else if (region == '' || region == null){
+		    alert('请填写地区');
+		    return false
+		}else if (door_model == '' || door_model == null){
+		    alert('请填写户型');
+		    return false
+		}else if (renting_area == '' || renting_area == null){
+		    alert('请填写房子面积');
+		    return false
+		}
+
+		$.ajax({
+			type: 'POST',
+			url: '/release',
+			data: {
+			    'user_id': user_id,
+			    'user_name': user_name,
+				'renting_title': renting_title,
+				'region': region,
+				'city': city,
+				'renting_floor': renting_floor,
+				'renting_address': renting_address,
+				'rent_type': rent_type,
+				'renting_orientation': renting_orientation,
+				'near_subway': near_subway,
+				'house_type': house_type,
+				'renting_fitment': renting_fitment,
+				'renting_detail': renting_detail,
+				'door_model': door_model,
+				'renting_price': renting_price,
+				'renting_area': renting_area
+			},
+			dataType: 'json',
+			success: function (data) {
+				if(data.result == 'ok'){
+				    alert('发布成功，请等待审核');
+				    window.location.href = window.location.href;
+				}
+				else{
+				    alert('发布失败');
+				}
+            },
+			error: function () {
+				alert('网络出错啦....');
+            }
+		});
+    });
+
+</script>

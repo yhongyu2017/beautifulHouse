@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>七怪房源后台管理系统</title>
+  <link rel="stylesheet" href="{{static_url('layui/css/layui.css')}}">
+  <link rel="stylesheet" href="{{static_url('css/global.css')}}">
+  <link rel="stylesheet" href="{{static_url('icheck/minimal/red.css')}}">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+
+  {% include 'temp_nav.html' %}
+
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+        <fieldset class="layui-elem-field">
+            <legend>用户评论管理 - 评论列表</legend>
+            <div class="layui-field-box">
+                {% if result_comment == '0' %}
+                暂无数据
+                {% else %}
+              <table class="layui-table">
+                  <colgroup>
+                      <col width="150">
+                      <col width="150">
+                      <col width="200">
+                      <col>
+                      <col>
+                  </colgroup>
+                  <thead>
+                      <tr>
+                      <!--<th class="selectAll"><input type="checkbox"></th>-->
+                        <th>评论内容的编号</th>
+                        <th>评论内容</th>
+                        <th>评论时间</th>
+                        <th>房屋编号</th>
+                        <th>评论人信息</th>
+                        <th style="text-align:center;">操作</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                    {% for row in result_comment %}
+                      <tr>
+                      <!--<td><input type="checkbox" name="id" value="1"></td>-->
+                          <td>{{row['user_comment_id']}}</td>
+                          <td>{{row['user_comments']}}</td>
+                          <input type="hidden" name="user_comment_id" value="{{row['user_comment_id']}}">
+                          <td>{{row['user_comment_time']}}</td>
+                          <td>{{row['house_id']}}</td>
+                          <td>{{row['user_id']}}</td>
+                      <td class="text-center">
+                        <div class="layui-btn-group">
+                          <button class="layui-btn layui-btn-xs layui-btn-danger deleteBtn" user_comment_id="{{row['user_comment_id']}}">
+                            <i class="layui-icon">&#xe640;</i>删除
+                          </button>
+                        </div>
+                      </td>
+                      </tr>
+                  {%end%}
+                  </tbody>
+              </table>
+                {% end %}
+            </div>
+        </fieldset>
+    </div>
+  </div>
+  {% include 'temp_footer.html' %}
+</div>
+</body>
+<script type="text/javascript" src="{{static_url('javascript/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{static_url('layui/layui.js')}}"></script>
+<script type="text/javascript" src="{{static_url('icheck/icheck.js')}}"></script>
+<script type="text/javascript" src="{{static_url('javascript/dw.js')}}"></script>
+<script type="text/javascript">
+    $(function () {
+        // 处理搜索按钮，根据房源标题进行模糊搜索
+        $('.deleteBtn').click(function () {
+            // 获取搜索框的内容
+            var user_comment_id = $(this).attr('user_comment_id');
+
+            $.ajax({
+                type: 'POST',
+                url: '/admin/commentList',
+                data: {'user_comment_id': user_comment_id},
+                dataType: 'json',
+                success:function (data) {
+                    if(data.result == 'ok'){
+                        alert('删除成功');
+                    }else{
+                        alert('删除失败');
+                    }
+                    window.location.href=window.location.href;
+                },
+                error:function (jqXHR) {
+                    alert('网络中断，请稍后再试');
+                }
+            });
+        });
+    });
+</script>
+</html>

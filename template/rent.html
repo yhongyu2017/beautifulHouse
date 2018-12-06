@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>七怪房源</title>
+<link href="{{static_url('css/style.css')}}" rel=stylesheet>
+<link rel="stylesheet" type="text/css" href="{{static_url('css/nav1.css')}}"/>
+<link rel="stylesheet" type="text/css" href="{{static_url('css/info.css')}}">
+<script src="{{static_url('js/jquery-1.8.3.min.js')}}" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" src="{{static_url('js/jquery.js')}}"></script>
+<script type="text/javascript" src="{{static_url('js/jquery.jslides.js')}}"></script>
+</head>
+<body class="vbody">
+<div class="header">
+    <div class="main">
+      <a href="" class="logo"><img src="{{static_url('image/logo.jpg')}}" width="446" height="48"/></a>
+    <div class="tel">
+     <div class="telnum">联系我们：<span>888-888-88888</span></div>
+     <div class="telphone"><img src="{{static_url('image/telphone.jpg')}}" width="57" height="57" /></div>
+    </div>
+  </div>
+</div>
+<div class="cbanner"><img src="{{static_url('image/banner1.jpg')}}" width="100%" height="351" /></div>
+
+<div class="menu">
+  <ul>
+      <li><a href="/index">首页</a></li>
+      <li><a href="/about_us">关于我们</a></li>
+      <li><a href="/third_rent">第三方租房</a></li>
+      <li><a href="">租房点我呀</a></li>
+	  <li><a href="/release">发布点我呀</a></li>
+      <li><a href="/advice">投诉建议</a></li>
+      <li><a href="/user">个人中心</a></li>
+  </ul>
+</div>
+<div id="sx-nav">
+	<div class="sx_updown clearfix">
+			<div class="content">
+				<div class="updown_box w290">
+					<h3>区域</h3>
+					<ul id="select1">
+						<li><a href="javascript:;">朝阳</a></li>
+						<li><a href="javascript:;">西城</a></li>
+						<li><a href="javascript:;">东城</a></li>
+						<li><a href="javascript:;">丰台</a></li>
+						<li><a href="javascript:;">石景山</a></li>
+						<li><a href="javascript:;">海淀</a></li>
+						<li><a href="javascript:;">门头沟</a></li>
+						<li><a href="javascript:;">房山</a></li>
+						<li><a href="javascript:;">通州</a></li>
+						<li><a href="javascript:;">顺义</a></li>
+						<li><a href="javascript:;">昌平</a></li>
+						<li><a href="javascript:;">大兴</a></li>
+						<li><a href="javascript:;">怀柔</a></li>
+						<li><a href="javascript:;">平谷</a></li>
+						<li><a href="javascript:;">密云</a></li>
+						<li><a href="javascript:;">延庆</a></li>
+					</ul>
+				</div>
+				<div class="updown_box w160">
+					<h3>价格(元)</h3>
+					<ul id="select2">
+						<li><a href="javascript:;">1500以下</a></li>
+						<li><a href="javascript:;">1500-2000</a></li>
+						<li><a href="javascript:;" >2000-3000</a></li>
+						<li><a href="javascript:;">3000-4000</a></li>
+						<li><a href="javascript:;">4000-5000</a></li>
+						<li><a href="javascript:;">5000-10000</a></li>
+						<li><a href="javascript:;">10000-20000</a></li>
+						<li><a href="javascript:;">20000以上</a></li>
+					</ul>
+				</div>
+				<div class="updown_box w160">
+					<h3>户型</h3>
+					<ul id="select3">
+						<li><a href="javascript:;">1室</a></li>
+						<li><a href="javascript:;">2室</a></li>
+						<li><a href="javascript:;">3室</a></li>
+						<li><a href="javascript:;">4室</a></li>
+						<li><a href="javascript:;">5室</a></li>
+					</ul>
+				</div>
+				<div class="updown_box w160">
+					<h3>类型</h3>
+					<ul id="select4">
+						<li><a href="javascript:;">整租</a></li>
+						<li><a href="javascript:;">合租</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	<div class="sousuo clearfix">
+		<div class="select-result clearfix">
+			<ul>
+			</ul>
+			<button class="sou_bu" onclick="find();">搜索</button>
+		</div>
+	</div>
+	<script type="text/javascript" src="{{static_url('js/nav1js.js')}}"></script>
+</div>
+<hr />
+<!-- 房屋信息模块 -->
+<div class="house_info">
+	<!--<div class="zu_tab">-->
+		<!--<a href="#">全部</a>-->
+	<!--</div>-->
+	<!--<div class="zu_sort">-->
+		<!--<span>为您找到<em>北京</em>的租房</span>-->
+		<!--<span class="sort_right">排序：<em>默认</em></span>-->
+	<!--</div>-->
+	{% for i in result %}
+	<div class="zu_itemmod">
+		<a href="/rent_info?id={{i[0]}}" target="_blank"><img class="imags" src="{{static_url('image/timg.jpg')}}" width="180px" height="135px" border="0" alt="{{i[3]}}"></a>
+		<div class="zu_info">
+			<h3>
+				<a	target="_blank"
+				    title="{{i[4]}}"
+					href="/rent_info?id={{i[0]}}">{{i[4]}}</a></h3>
+			<p class="details_item tag">
+				{{i[6]}}<span>|</span>{{i[7]}}<span>|</span>{{i[8]}}<span class="icon"></span></p>
+			<address class="details_item">
+                <a target="_blank" href="#">{{i[9]}}</a></address>
+			<p class="details_item bot_tag clearfix">
+				<span class="cls_1">{{i[10]}}</span>
+				<span class="cls_2">{{i[11]}}</span>
+				<span class="cls_3">{{i[12]}}</span>
+			</p>
+		</div>
+		<div class="zu_side">
+            <p><strong>{{i[14]}}</strong> 元/月</p>
+        </div>
+	</div>
+	{% end %}
+	<!--<div class="zu_itemmod">-->
+		<!--<a href="/rent_info" target="_blank"><img class="imags" src="https://pic1.ajkimg.com/display/hj/90b98caf849eefa7cf4c2e240cfdcf23/240x180m.jpg?t=1" width="180px" height="135px" border="0" alt="角门东朝南主卧 独立卫浴 地铁站A口出来即是 拎包即住">-->
+		<!--<div class="zu_info">-->
+			<!--<h3>-->
+				<!--<a	target="_blank"-->
+				    <!--title="角门东朝南主卧 独立卫浴 地铁站A口出来即是 拎包即住"-->
+					<!--href="house_info01.html">角门东朝南主卧 独立卫浴 地铁站A口出来即是 拎包即住</a></h3>-->
+			<!--<p class="details_item tag">-->
+				<!--3室1厅<span>|</span>30平米<span>|</span>6/12层<span class="icon"></span>李昭东                        </p>-->
+			<!--<address class="details_item">-->
+			<!--<a target="_blank" href="#">怡然家园(北区)</a>&nbsp;&nbsp;丰台-角门 西马场路5号</address>-->
+			<!--<p class="details_item bot_tag clearfix">-->
+				<!--<span class="cls_1">合租</span>-->
+				<!--<span class="cls_2">朝南</span>-->
+				<!--<span class="cls_3">4/10号线</span>-->
+			<!--</p>-->
+		<!--</div>-->
+		<!--<div class="zu_side">-->
+            <!--<p><strong>3000</strong> 元/月</p>-->
+        <!--</div>-->
+	<!--</div>-->
+	<!--<div class="zu_itemmod">-->
+		<!--<a href="house_info01.html" target="_blank"><img class="imags" src="https://pic1.ajkimg.com/display/hj/3688842ffedfd84859763cc38680bba9/240x180m.jpg?t=1" width="180px" height="135px" border="0" alt="角门东朝南主卧 独立卫浴 地铁站A口出来即是 拎包即住">-->
+		<!--<div class="zu_info">-->
+			<!--<h3>-->
+				<!--<a	target="_blank"-->
+				    <!--title="角门东朝南主卧 独立卫浴 地铁站A口出来即是 拎包即住"-->
+					<!--href="house_info01.html">角门东朝南主卧 独立卫浴 地铁站A口出来即是 拎包即住</a></h3>-->
+			<!--<p class="details_item tag">-->
+				<!--3室1厅<span>|</span>30平米<span>|</span>6/12层<span class="icon"></span>李昭东                        </p>-->
+			<!--<address class="details_item">-->
+			<!--<a target="_blank" href="#">怡然家园(北区)</a>&nbsp;&nbsp;丰台-角门 西马场路5号</address>-->
+			<!--<p class="details_item bot_tag clearfix">-->
+				<!--<span class="cls_1">合租</span>-->
+				<!--<span class="cls_2">朝南</span>-->
+				<!--<span class="cls_3">4/10号线</span>-->
+			<!--</p>-->
+		<!--</div>-->
+		<!--<div class="zu_side">-->
+            <!--<p><strong>3000</strong> 元/月</p>-->
+        <!--</div>-->
+	<!--</div>-->
+	<div class="clearfix"></div>
+
+</div>
+
+
+ <div class="bootTxt">
+ <div class="text">地址：北京市大兴区亦庄经济发展区科创十三街达内教育中心&nbsp;&nbsp;&nbsp;&nbsp;座机：888-8888-888&nbsp;&nbsp;&nbsp;&nbsp;手机：1388888888<br />版权所有：七怪团队&nbsp;&nbsp;&nbsp; 技术支持：<a href="" >七怪团队</a>&nbsp;&nbsp;&nbsp; ICP备案编号：<a href="">ICP备********号</a></div>
+  </div>
+</body>
+<script>
+	function find(){
+        var region = $('#selectA').text();
+        var price = $('#selectB').text();
+        var door_model = $('#selectC').text();
+        var rent_type = $('#selectD').text();
+        html = "";
+        $(function(){
+            $.ajax({
+            type:'GET',
+            url:'/find',
+            data:{
+                "region": region,
+                "renting_price":price,
+                "door_model":door_model,
+                "rent_type":rent_type
+            },
+            dataType: "json",
+			success:function (data) {
+                if(data.result == "ok"){
+                    if(data.info){
+                        $.each(data.info, function (key, value) {
+                            html += '<div class="zu_itemmod">' +
+                                    '<a href="/rent_info?id=' + value[0] +'" target="_blank"><img class="imags" src="http://pic.ziroom.com/apartment/upload/20160906/1473126771299-1472804020099-_MG_4601.jpg" width="180px" height="135px" border="0" alt="' + value[3] +'"></a>' +
+                                    '<div class="zu_info">' +
+                                    '<h3>' +
+                                    '<a	target="_blank" title="'+value[4]+'" href="/rent_info?id=' + value[0] + '">'+ value[4] +'</a></h3>' +
+                                    '<p class="details_item tag">' +
+                                    value[6] + '<span>|</span>' + value[7] + '<span>|</span>'+ value[8] + '<span class="icon"></span></p>' +
+                                    '<address class="details_item">' +
+                                    '<a target="_blank" href="#">' + value[9] + '</a></address>' +
+                                    '<p class="details_item bot_tag clearfix">' +
+                                    '<span class="cls_1">' + value[10] + ' </span>' +
+                                    '<span class="cls_2">' + value[11] + ' </span>' +
+                                    '<span class="cls_3">' + value[12] + ' </span>' +
+                                    '</p>' +
+                                    '</div>' +
+                                    '<div class="zu_side">' +
+                                    '<p><strong>' + value[14] + '</strong> 元/月</p>'+
+                                    '</div>' +
+                                    '</div>'
+                        });
+                        $('.house_info').html(html)
+                    }
+                    else{
+                        html = "<h2>暂无数据</h2>";
+                        $('.house_info').html(html)
+                    }
+                }
+            }
+            });
+        })
+    }
+</script>
+</html>

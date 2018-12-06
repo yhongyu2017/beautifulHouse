@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>七怪房源后台管理系统</title>
+  <link rel="stylesheet" href="{{static_url('layui/css/layui.css')}}">
+</head>
+<body>
+<div class="layui-container">  
+    <div class="layui-row">
+        <div class="layui-col-lg12">
+            <fieldset class="layui-elem-field">
+                <legend>管理员管理 - 添加管理员</legend>
+                <div class="layui-field-box">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">用户名</label>
+                        <div class="layui-input-block">
+                        <input type="text" name="adminName" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">密码框</label>
+                        <div class="layui-input-inline">
+                        <input type="password" name="adminPwd" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                        <button class="layui-btn subAdminBtn" lay-submit lay-filter="formDemo">立即提交</button>
+                        <button type="reset" class="layui-btn resetAdminBtn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="{{static_url('javascript/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{static_url('layui/layui.js')}}"></script>
+<script type="text/javascript" src="{{static_url('javascript/dw_form_submit.js')}}"></script>
+</body>
+<script type="text/javascript">
+    $(function () {
+        $('.subAdminBtn').click(function () {
+            var adminName = $('input[name=adminName]').val();
+            if (adminName == ''){
+                alert('请输入管理员账号！！');
+                return false;
+            }
+            var adminPwd = $('input[name=adminPwd]').val();
+            if(adminPwd == ''){
+                alert('请输入管理员密码！！');
+                return false;
+            }
+            $.ajax({
+                type: 'POST',
+                url: '/admin/adminAdd',
+                data: {'adminName': adminName, 'adminPwd': adminPwd},
+                dataType: 'json',
+                success: function (data) {
+                    if(data.result == 'exist'){
+                        alert('该管理员已存在');
+                    }else if(data.result == 'ok'){
+                        alert('添加成功');
+                    }
+                },
+                error: function (jqXHR) {
+                    alert('添加失败')
+                }
+            });
+        });
+        $('.resetAdminBtn').click(function () {
+            window.location.href=window.location.href;
+        });
+    });
+</script>
+</html>

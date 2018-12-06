@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>个人中心</title>
+<link href="{{static_url('css/yhgl.css')}}" rel=stylesheet>
+
+</head>
+<body class="vbody">
+
+ <div class="header">
+    <div class="main">
+      <a href="" class="logo"><img src="{{static_url('image/logo.jpg')}}" width="446" height="48"></a>
+    <div class="tel">
+     <div class="telnum">联系我们：<span>888-888-88888</span></div>
+     <div class="telphone"><img src="{{static_url('image/telphone.jpg')}}" width="57" height="57" /></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="menu">
+  <ul>
+      <li><a href="/index">首页</a></li>
+      <li><a href="/about_us">关于我们</a></li>
+      <li><a href="/third_rent">第三方租房</a></li>
+      <li><a href="/rent">租房点我呀</a></li>
+      <li><a href="/release">发布点我呀</a></li>
+      <li><a href="/advice">投诉建议</a></li>
+      <li><a href="/user">个人中心</a></li>
+  </ul>
+</div>
+
+
+ <div id="txbj" class="nav" style="background:url({{static_url('image/11.jpg')}});width:1150px;height:200px;">
+     <div id="" class="quan">
+         <a href=""><img src="{{static_url('image/touxiang.jpg')}}" width="" height="" border="0" alt=""></a>
+         <a href="" class="wangming">那年初夏</a>
+	 <div id="" class="">
+
+     </div>
+     </div>
+ </div>
+
+<div id="" class="main">
+	<div id="" class="left">
+		<ol>
+			<li class="shouye"><a href="">个人中心</a></li>
+			<li ><a href="/user/history">我的足迹</a></li>
+            <li><a href="/user/comment">我的评论</a></li>
+            <li><a href="/user/manage">个人管理</a></li>
+		</ol>
+	</div>
+    <div id="" class="right">
+	    <div id="" class="dongtai">个人中心 </div>
+        <div id="" class="">
+        </div>
+        {% if result_info == '0' %}
+        暂无数据
+        {% else %}
+        <table cellpadding="0" cellspacing="0" border="width:1px;" class="user_info01" align="center">
+            <tr>
+                <td>姓名</td>
+                <td>邮箱</td>
+                <td>注册时间</td>
+                <td>性别</td>
+                <td>地址</td>
+                <td>联系方式</td>
+            </tr>
+            {% for row in result_info %}
+                <tr>
+                    <td>{{row['user_name']}}</td>
+                    <td>{{row['user_email']}}</td>
+                    <td>{{row['user_create_time']}}</td>
+                    <td>{{row['user_gender']}}</td>
+                    <td>{{row['user_address']}}</td>
+                    <td>{{row['user_phone']}}</td>
+                </tr>
+            {%end%}
+        </table>
+        {%end%}
+    </div>
+
+</div>
+</div>
+
+ <div class="bootTxt">
+ <div class="text"> 地址：北京市大兴区亦庄经济发展区科创十三街达内教育中心&nbsp;&nbsp;&nbsp;&nbsp;座机：888-8888-888&nbsp;&nbsp;&nbsp;&nbsp;手机：1388888888<br />版权所有：七怪团队&nbsp;&nbsp;&nbsp; 技术支持：<a href="" >七怪团队</a>&nbsp;&nbsp;&nbsp; ICP备案编号：<a href="">ICP备********号</a></div>
+</div>
+</body></html>

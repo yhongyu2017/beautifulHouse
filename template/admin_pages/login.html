@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>七怪房源后台管理系统-登录</title>
+    <link rel="stylesheet" type="text/css" href="{{static_url('layui/css/layui.css')}}" media="all" />
+    <link rel="stylesheet" type="text/css" href="{{static_url('css/admin_login.css')}}" />
+</head>
+<body class="beg-login-bg">
+    <div class="beg-login-box">
+        <header>
+            <h1>七怪房源后台管理系统</h1>
+        </header>
+        <div class="beg-login-main">
+            <!--<form action="login.html" class="layui-form" method="post">-->
+                <div class="layui-form-item">
+                    <label class="beg-login-icon">
+                        <i class="layui-icon">&#xe612;</i>
+                    </label>
+                    <input type="text" id="admin_name" lay-verify="required" name="admin_name" autocomplete="off" placeholder="这里输入账号" class="layui-input" lay-verType="tips">
+                </div>
+                <div class="layui-form-item">
+                    <label class="beg-login-icon">
+                        <i class="layui-icon">&#xe642;</i>
+                    </label>
+                    <input type="password" id="admin_pwd" lay-verify="required" name="admin_pwd" autocomplete="off" placeholder="这里输入密码" class="layui-input" lay-verType="tips">
+                </div>
+                <div class="layui-form-item">
+                    <div class="beg-pull">
+                        <button type="button" class="layui-btn layui-btn-normal" onclick="submitAdmin()" style="width:100%;" lay-submit lay-filter="formDemo">
+                            登　　录
+                        </button>
+                    </div>
+                </div>
+            <!--</form>-->
+        </div>
+        <footer>
+            <p>power by dw © </p>
+        </footer>
+    </div>
+    <script type="text/javascript" src="{{static_url('javascript/jquery.min.js')}}"></script>
+    <script type="text/javascript" src="{{static_url('layui/layui.js')}}"></script>
+    <script type="text/javascript" src="{{static_url('javascript/login.js')}}"></script>
+    <script type="text/javascript">
+        function submitAdmin() {
+            adminName = document.getElementById('admin_name').value;
+            adminPwd = document.getElementById('admin_pwd').value;
+            $(function(){
+            $.ajax({
+                type:'POST',
+                url:'/admin/login',
+                data:{'adminName':adminName, 'adminPwd':adminPwd},
+                dataType: "json",
+                success:function(data){
+                    if (data.result == "ok"){
+                        layer.msg('登录成功~');
+                        setTimeout(function () {
+                            window.location.href = "/admin/index";
+                        }, 1000);
+                    }
+                    else if(data.result == 'block'){
+                        layer.alert('账号被冻结，请联系超级管理员！',{
+                            icon:5,
+                            title: '提示'
+                        });
+                    }
+                    else if(data.result == "fail"){
+                        layer.alert('用户名或密码错误',{
+                            icon: 5,
+                            title: '提示'
+                        });
+                    }
+                },
+                error:function(jqXHR){
+                   alert('登陆失败');
+                },
+            });
+         });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的足迹</title>
+<link href="{{static_url('css/grzj.css')}}" rel=stylesheet>
+
+</head>
+<body class="vbody">
+
+ <div class="header">
+    <div class="main">
+      <a href="" class="logo"><img src="{{static_url('image/logo.jpg')}}" width="446" height="48"></a>
+    <div class="tel">
+     <div class="telnum">联系我们：<span>888-888-88888</span></div>
+     <div class="telphone"><img src="{{static_url('image/telphone.jpg')}}" width="57" height="57" /></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="menu">
+  <ul>
+      <li><a href="/index">首页</a></li>
+      <li><a href="/about_us">关于我们</a></li>
+      <li><a href="/third_rent">第三方租房</a></li>
+      <li><a href="/rent">租房点我呀</a></li>
+      <li><a href="/release">发布点我呀</a></li>
+      <li><a href="/advice">投诉建议</a></li>
+      <li><a href="/user">个人中心</a></li>
+
+  </ul>
+</div>
+
+
+    <div id="txbj" class="nav" style="background:url({{static_url('image/11.jpg')}});
+	width:1150px;height:200px;">
+	<div id="" class="quan">
+	<a href=""><img src="{{static_url('image/touxiang.jpg')}}" width="" height="" border="0" alt="">	</a>
+
+	<a href="" class="wangming">那年初夏</a>
+	<div id="" class="">
+
+    </div>
+    </div>
+	</div>
+
+
+
+<div id="" class="main">
+	<div id="" class="left">
+		<ol>
+			<li ><a href="/user">个人中心</a></li>
+			<li><a href="/user/history">我的足迹</a></li>
+            <li class="shouye"><a href="">我的评论</a></li>
+            <li><a href="/user/manage">个人管理</a></li>
+		</ol>
+	</div>
+
+
+	<div id="" class="right">
+        <!--在个人中心页面，将我的评论的页面展示。-->
+	    <div id="" class="dongtai">我的评论</div>
+        <div id="" class="mycomment">
+            <table width=100% border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" >
+                  <tr>
+                <!--列名-->
+                    <th width="30%" height="40" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">标题</span></div></th>
+                    <th width="40%" height="40" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">评论内容</span></div></th>
+                    <th width="20%" height="40" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">评论时间</span></div></th>
+                    <th width="10%" height="40" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">操作</span></div></th>
+                  </tr>
+                   <!--每列中的元素-->
+                    <c:forEach  items="${studentAll}" var="student" >
+                        {% for i in result %}
+
+                            <tr>
+                             <td width="30%" height="40" bgcolor=white class="STYLE6"><div align="center"><span class="STYLE10">
+                                    <a href="/">{{i[0]}}</a>
+                             </span></div></td>
+                             <input type="hidden" name="comment_id" value='{{i[1]}}'>
+                             <!--<td width="30%" height="40" bgcolor=white class="STYLE6"><div align="center"><span class="STYLE10">-->
+                                    <!--<a href="/">{{i[1]}}</a>-->
+                             <!--</span></div></td>-->
+                             <td width="40%" height="40" bgcolor=white class="STYLE6"><div align="center"><span class="STYLE10">
+                                    {{i[2]}}
+                             </span></div></td>
+                             <td width="20%" height="40" bgcolor=white class="STYLE6"><div align="center"><span class="STYLE10">
+                                    {{i[3]}}
+                             </span></div></td>
+                             <td width="10%" height="40" bgcolor=white class="STYLE6"><div align="center"><span class="STYLE10">
+                                 <button class="del_com" width=80px height=30px>删除</button>
+                             </span></div></td>
+                             <!-- 此操作可以设置为删除或修改按钮-->
+                            </tr>
+                        {% end %}
+                   </c:forEach>
+                </table>
+        </div>
+    </div>
+</div>
+
+ <div class="bootTxt">
+ <div class="text"> 地址：北京市大兴区亦庄经济发展区科创十三街达内教育中心&nbsp;&nbsp;&nbsp;&nbsp;座机：888-8888-888&nbsp;&nbsp;&nbsp;&nbsp;手机：1388888888<br />版权所有：七怪团队&nbsp;&nbsp;&nbsp; 技术支持：<a href="" >七怪团队</a>&nbsp;&nbsp;&nbsp; ICP备案编号：<a href="">ICP备********号</a></div>
+</div>
+</body>
+<script type="text/javascript" src="{{static_url('js/jquery-1.8.3.min.js')}}"></script>
+<!--type='text/javascript 必须这么写'-->
+<script type="text/javascript">
+    // 用ajax将数据发送给后台
+        $('.del_com').click(function () {
+            var user_comment_id = $('input[name=comment_id]').val();
+            // 获取评论的id
+            $.ajax({
+                type: 'POST',
+                url: '/user/comment',
+                data: {'user_comment_id': user_comment_id},
+                dataType: 'JSON',
+                success: function (data) {
+                    if (data.result == 'ok') {
+                        alert('删除成功')
+                        window.location.href=window.location.href
+                        // 刷新本页面
+                    }
+                    else {
+                        alert('外星人带走了你的数据')
+                    }
+                },
+                error: function () {
+                    alert('出错了，请重试')
+                }
+            })
+        })
+</script>
+</html>

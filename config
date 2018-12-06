@@ -1,0 +1,3 @@
+port = 9000
+db = ['root','root3306','3306','zhijian']
+files='./fils/images'

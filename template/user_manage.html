@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>首页</title>
+<link href="{{static_url('css/grgl.css')}}" rel=stylesheet>
+<script src="{{static_url('js/jquery-3.2.1.js')}}" type="text/javascript"></script>
+</head>
+<body class="vbody">
+
+ <div class="header">
+    <div class="main">
+      <a href="" class="logo"><img src="{{static_url('image/logo.jpg')}}" width="446" height="48"></a>
+    <div class="tel">
+     <div class="telnum">联系我们：<span>888-888-88888</span></div>
+     <div class="telphone"><img src="{{static_url('image/telphone.jpg')}}" width="57" height="57" /></div>
+    </div>
+  </div>
+</div>
+
+
+<div class="menu">
+  <ul>
+      <li><a href="/index">首页</a></li>
+      <li><a href="/about_us">关于我们</a></li>
+      <li><a href="/third_rent">第三方租房</a></li>
+      <li><a href="/rent">租房点我呀</a></li>
+      <li><a href="/release">发布点我呀</a></li>
+      <li><a href="/advice">投诉建议</a></li>
+      <li><a href="/user">个人中心</a></li>
+  </ul>
+</div>
+
+    
+    <div id="txbj" class="nav" style="background:url({{static_url('image/11.jpg')}});
+	width:1150px;height:200px;">
+	<div id="" class="quan">
+	<a href=""><img src="{{static_url('image/touxiang.jpg')}}" width="" height="" border="0" alt="">	</a>
+	
+	<a href="" class="wangming">那年初夏</a>
+	<div id="" class="">
+		
+    </div>
+    </div>
+	</div>
+
+
+
+<div id="" class="main">
+	<div id="" class="left">
+		<ol>
+			<li ><a href="/user">个人中心</a></li>
+			<li ><a href="/user/history">我的足迹</a></li>
+			<li><a href="/user/comment">我的评论</a></li>
+			<li class="shouye"><a href="">个人管理</a></li>
+		</ol>
+	</div>
+
+
+	<div id="" class="right">
+	<div id="" class="dongtai">个人管理 </div>
+	<h2>资料完善 </h2>
+		<form name="form1" method="post" action="">
+		<table>
+	   <tr>
+	   <td>性别</td>
+	   <td ><input  class="ww" type="text" name="gender"  id="female" value="{{userManage['user_gender']}}">
+	<!--<label for="male">男</label>-->
+	<!--<input type="radio" name="gender" value="female" id="female">-->
+	<!--<label for="female">女</label></td>-->
+	   </tr>
+
+			<tr>
+	   <td>居住所在地</td>
+	   <td><input type="text" name="zhiye" class="ww" id="zhiye1" value="{{userManage['user_address']}}"></td>
+	   </tr>
+
+
+       <tr>
+	   <td>电话</td>
+	   <td><input type="text" name="phone" class="ww" id="phone" value="{{userManage['user_phone']}}"></td>
+	   </tr>
+
+	     <tr>
+	   <td>邮箱</td>
+	   <td><input type="email" name="data" class="ww" id="birthday" value="{{userManage['user_head_img']}}"></td>
+	   </tr>
+
+
+		  <tr>
+	   <td></td>
+	   <td><input type="hidden" name="quyu" class="ww" id ="quyuH" value="{{userManage['user_land_lord']}}"></td>
+	   </tr>
+
+
+		  <tr>
+	   <td></td>
+	   <td><input type="button" value="保存" onclick="submitSave()" class="ww"></td>
+	   </tr>
+
+
+		</table>
+		</form>
+</div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+// <!------------------------------个人信息修改------------------------------------>
+	 function submitSave(){
+
+	     var phone1 = form1.phone.value;
+	     var email = form1.data.value;
+
+	 if ((phone1=='')||(phon1=null)){
+	     alert('请输入您的联系方式');
+	     //只有return为true时表单才会提交
+		 form1.user.focus();
+	 }else if((email=='')||(email=null)){
+	     alert('请输入邮箱');
+	     form1.user.focus();
+	 }else{gender = document.getElementById("female").value;
+
+         zhiye = document.getElementById('zhiye1').value;
+
+         phone = document.getElementById("phone").value;
+
+         birthday = document.getElementById('birthday').value;
+         quyu = document.getElementById('quyuH').value;
+         $(function(){
+            $.ajax({
+                type:'POST',
+                url:'/user/manage',
+                data:{'gender':gender, 'zhiye':zhiye,'phone':phone, 'birthday':birthday,'Quyu':quyu},
+                dataType: "json",
+                success:function(data){
+                    if (data.result == "ok"){
+                        alert('保存成功');
+                    }
+					else if(data.result == 'nuid'){
+                        alert('请登陆');
+                        window.location.href="/login";
+					}
+                    else if(data.result == "no"){
+                    	 alert('保存失败');
+                    	 window.location.href="/login";
+                    }
+                     //--------------------------------------------------
+                },
+                error:function(jqXHR){
+                   alert('保存失败');
+                   //如果失败则跳转到登录页面
+                   window.location.href="/login";
+
+                },
+            });
+         });
+	 }
+
+     }
+</script>
+</html>

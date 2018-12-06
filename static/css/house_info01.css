@@ -1,0 +1,229 @@
+a:hover{
+	color:#64A131;
+}
+h3{
+	margin:0;
+	font-size:normal;
+	font-weight:normal;
+}
+em{
+	font-style:normal;
+}
+ul,li{
+	list-style:none;
+}
+.menu ul li a:hover{
+	color:#fff;
+}
+.house_address{
+	width:1004px;
+	margin:0 auto;
+	padding-left:5px;
+	margin-bottom:15px;
+	height:20px;
+	color:#666;
+	font-size:13px;
+	line-height:20px;
+	margin-top:10px;
+}
+.wrapper{
+	width:1004px;
+	clear:both;
+	margin:0 auto;
+}
+.house_title{
+	color:#333;
+	font-size:24px;
+	font-weight:bold;
+	letter-spacing:1px;
+	line-height:51px;
+	padding:5px 0 10px 0;
+	display:inline-block;
+	vertical-align:top;	
+}
+.light{
+	color:#f60;
+}
+.info_tag{
+	float:left;
+	padding-right:18px;
+	margin-right:21px;
+	line-height:22px;
+	border-right:1px solid #e6e6e6;
+	font-size:14px;
+}
+.info_tag em{
+	font-size:24px;
+	font-family:"Tohoma";
+}
+.light em{
+	font-weight:700;
+}
+.title_label{
+	padding:3px 0 15px; 
+}
+.rent{
+	color:#e88a78;
+	background:#fbf4f1;
+}
+.title_label_item{
+	float:left;
+	line-height:22px;
+	padding:0 10px;
+	font-size:12px;
+	margin-right:10px;
+	border-radius:11px;
+}
+.buy{
+	color:#799374;
+	background:#f2f6ed;
+}
+.subway{
+	color:#6682ae;
+	background:#f0f4f8;
+}
+.lbox{
+	float:left;
+	width:760px;
+}
+/* �ֲ���� */
+.switch_warpper{width:760px;height:450px;border:1px solid #d7d7d7;overflow:hidden;position:relative;}
+.img{margin-left:80px;}
+/*������Ϣ*/
+.mod_title{
+	padding-top:37px;
+	line-height:46px;
+	font-size:20px;
+	color:#333;
+	width:100%;
+}
+.bottomed{
+	border-bottom:1px solid #e6e6e6;
+}
+.mod_title .titles{
+	display:inline-block;
+	vertical-align:middle;
+	color:#333;
+}
+.mod_title .right_info{
+	font-size:13px;
+	line-height:53px;
+	color:#999;
+	float:right;
+}
+.house-info-zufang{
+	margin-bottom:-4px;
+	font-size:14px;
+	color:#333;
+	position:relative;
+}
+.house-info-zufang .full-line{
+	display:block;
+	margin-top:9px;
+	line-height:30px;
+}
+.house-info-zufang>.full-line>.price{
+	float:left;
+	color:#e54b00;
+	margin-right:5px;
+	line-height:24px;
+}
+.full-line .price em{
+	font-size:22px;
+	font-weight:700;
+}
+.house-info-zufang .type{
+	color:#999;
+}
+.house-info-item,.l-width{
+	width:410px;
+}
+.house-info-item{
+	float:left;
+	line-height:28px;
+	width:235px;
+}
+.mod-title{
+	padding-top:37px;
+	line-height:46px;
+	font-size:20px;
+	color:#333;
+	width:100%;
+}
+.bottomed{
+	border-bottom:1px solid #e6e6e6;
+}
+.mod-title .title{
+	display:inline-block;
+	vertical-align:middle;
+	color:#333;
+}
+.auto-general{
+	overflow:hidden;
+	padding-top:12px;
+	max-width:760px;
+	padding-bottom:12px;
+	font-size:14px;
+	color:#333;	
+}
+h3{
+	font-size:100%;
+}
+.title{
+	border:0;
+}
+/*��Ϣ�ұ�*/
+.rbox{
+	float:right;
+	width:220px;
+	padding:15px 0 10px;
+	border:1px solid #e6e6e6;
+}
+.broker-photo{
+	width:110px;
+	height:141px;
+	border-radius:2px;
+	margin:0 auto;
+	display:block;
+}
+.broker-name{
+	line-height:17px;
+	padding:18px 0 30px 0;
+	color:#333;
+	font-size:15px;
+	text-align:center;
+}
+.broker-line{
+	line-height:26px;
+	color:#999;
+	font-size:12px;
+	width:100%;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+	margin-left:5px;
+}
+
+body,input{font-size:14px; line-height:24px; color:#333; font-family:Microsoft yahei, Song, Arial, Helvetica, Tahoma, Geneva;}
+#content #post,#comment p{zoom:1;}
+#content #post:after,#comment p:after{display:block; height:0; clear:both; visibility:hidden; overflow:hidden; content:'.';}
+.transition{-webkit-transition:all 0.5s linear; -moz-transition:all 0.5s linear; -o-transition:all 0.5s linear; -ms-transition:all 0.5s linear; transition:all 0.5s linear;}
+#content{margin:0 auto; width:223px; overflow:hidden;position: absolute;right:0;top:330px;}
+#content #post{margin-bottom:15px; padding-bottom:15px; border-bottom:1px #d4d4d4 dashed;
+	   height: 220px; width:223px;
+   }
+#content #post textarea{display:block; margin-bottom:10px; padding:5px; width:210px; height:125px; border:1px #d1d1d1 solid; border-radius:5px; resize:none; outline:none;}
+#content #post textarea:hover{border:1px #9bdf70 solid; background:#f0fbeb;}
+#content #post #postBt,#content #post #clearBt{margin-left:5px; padding:3px; float:right;}
+#comment{overflow:hidden; width: 223px;}
+#comment p{margin-bottom:10px; padding:10px; border-radius:5px;}
+#comment p:nth-child(odd){border:1px solid #e3e197; background:#ffd;}
+#comment p:nth-child(even){border:1px solid #adcd3c; background:#f2fddb;}
+/*#comment p span{display:inline; float:left;}*/
+#comment p .right{text-align:right;}
+#comment p .msg{width:223px;}
+#comment p .datetime{width:200px; color:#999; text-align:right;}
+.mainbox{
+    position: relative;
+}
+

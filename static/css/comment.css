@@ -1,0 +1,41 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+#com_te_bu{
+	margin: 0 auto;
+	width: 369px;
+	margin-bottom: 100px;
+}
+.com{
+	resize: none;
+	outline: none;
+	font-size: 14px;
+}
+.com_bu{
+	margin-top: 5px;
+	width: 70px;
+	height: 35px;
+	float: right;
+	border:1px solid #fff ;
+	border-radius: 10px;
+	background-color: #grey;
+	font:bold 12px "微软雅黑"; 
+	color:#353B36;
+}
+#com_bu:hover{
+	background: silver;
+}
+.nummessage{
+	width: 369px;
+	position:relative;
+	left:50%;
+	margin-left: -185px;
+}
+.message{
+	width: 369px;
+	margin: 0 auto;
+}
+
+

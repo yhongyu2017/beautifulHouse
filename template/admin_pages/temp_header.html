@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>七怪房源后台管理系统</title>
+  <link rel="stylesheet" href="{{static_url('layui/css/layui.css')}}">
+</head>
+<body>
+  <div class="layui-header">
+    <div class="layui-logo">七怪房源后台管理</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <!--<ul class="layui-nav layui-layout-left">-->
+      <!--<li class="layui-nav-item"><a href="/admin/userList">用户列表</a></li>-->
+      <!--<li class="layui-nav-item"><a href="/admin/hostList">房东列表</a></li>-->
+    <!--</ul>-->
+
+      <!--已登录，显示用户名-->
+    <ul class="layui-nav layui-layout-right" id="admin_status">
+      <li class="layui-nav-item">
+          <span id="admin_name"></span>
+      </li>
+      <li class="layui-nav-item">
+        <span id="admin_logout"></span>
+      </li>
+    </ul>
+      <!--没有登录显示'请登录'-->
+    <ul class="layui-nav layui-layout-right" id="please_login">
+      <li class="layui-nav-item">
+        <span id="admin_login"></span>
+      </li>
+    </ul>
+      <!--<p id="please_login" style="color: #fff; text-align: right">-->
+          <!--请<a href="/admin/login" style="color: #fff;">登录</a>-->
+      <!--</p>-->
+  </div>
+</body>
+<script type="text/javascript" src="{{static_url('js/jquery-1.8.3.min.js')}}"></script>
+<script type="text/javascript" src="{{static_url('javascript/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{static_url('layui/layui.js')}}"></script>
+<script type="text/javascript" src="{{static_url('javascript/index.js')}}"></script>
+
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>七怪房源后台管理系统</title>
+  <link rel="stylesheet" href="{{static_url('layui/css/layui.css')}}">
+  <link rel="stylesheet" href="{{static_url('css/global.css')}}">
+  <link rel="stylesheet" href="{{static_url('icheck/minimal/red.css')}}">
+
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <!--加载静态文件-->
+
+  {% include 'temp_nav.html' %}
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div style="padding: 15px;">
+        <fieldset class="layui-elem-field">
+            <legend>房源管理 - 房源信息列表</legend>
+            <div class="layui-field-box">
+              <!--<form class="layui-form" action="">-->
+                <div class="layui-form-item search_form_item" style="text-align:center;">
+                  <div class="layui-inline">
+                    <div class="layui-input-inline">
+                      <input autocomplete="off" class="layui-input searchInput" placeholder="请输入名称" type="text" name="name" value="">
+                    </div>
+                  </div>
+                  <div class="layui-inline" style="text-align:left;">
+                    <div class="layui-input-inline">
+                      <button class="layui-btn searchBtn"><i class="layui-icon">&#xe615;</i>查询</button>
+                    </div>
+                  </div>
+                </div>
+              <!--</form>-->
+              <hr>
+                {%if result == '0'%}
+                暂无数据
+                {%else%}
+              <div class="layui-btn-group">
+                  <!--<button class="layui-btn layui-btn-xs layui-btn-danger dw-batch-delete" dw-url="/admin/houseDelete">-->
+                      <!--<i class="layui-icon">&#xe640;</i>删除-->
+                  <!--</button>-->
+                  <button class="layui-btn layui-btn-xs dw-refresh" style="display: none">
+                      <i class="layui-icon">&#x1002;</i>刷新
+                  </button>
+              </div>
+              <hr>
+              <table class="layui-table">
+                  <colgroup>
+                      <col width="150">
+                      <col width="150">
+                      <col width="200">
+                      <col>
+                      <col>
+                  </colgroup>
+                  <thead>
+                      <tr>
+                      <!--<th class="selectAll"><input type="checkbox"></th>-->
+                      <th>房源编号</th>
+                      <th>房源标题</th>
+                      <th>房源所在地</th>
+                      <th>发布者</th>
+                      <th>发布时间</th>
+                      <th style="text-align:center;">操作</th>
+                      </tr> 
+                  </thead>
+                  <tbody>
+                  {%for row in result%}
+                  <tr>
+                      <!--<td><input type="checkbox" name="id" value="{{row['renting_id']}}" /></td>-->
+                      <td>{{row['renting_id']}}</td>
+                      <td>{{row['renting_title']}}</td>
+                      <td>{{row['region']}}</td>
+                      <td>{{row['user_name']}} {{row['user_email']}}</td>
+                      <td>{{row['release_time']}}</td>
+                      <td class="text-center">
+                        <div class="layui-btn-group">
+                          <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="/admin/houseEdit?id={{row['renting_id']}}" dw-title="编辑房源信息">
+                            <i class="layui-icon">&#xe642;</i>编辑
+                          </button>
+                          <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete"  title="{{row['renting_title']}}">
+                            <i class="layui-icon">&#xe640;</i>删除
+                          </button>
+                        </div>
+                      </td>
+                  </tr>
+                  {% end %}
+                  </tbody>
+              </table>
+                {%end%}
+            </div>
+        </fieldset>
+    </div>
+  </div>
+  {% include 'temp_footer.html' %}
+</div>
+</body>
+  <script type="text/javascript" src="{{static_url('js/jquery-1.8.3.min.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('javascript/jquery.min.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('layui/layui.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('icheck/icheck.js')}}"></script>
+  <script type="text/javascript" src="{{static_url('javascript/dw.js')}}"></script>
+<script type="text/javascript">
+    $(function () {
+        // 处理搜索按钮，根据房源标题进行模糊搜索
+        $('.searchBtn').click(function () {
+            // 获取搜索框的内容
+            var searchInput = $('.searchInput').val();
+            searchInput = searchInput.toString();
+            var html = '';
+            // alert(searchInput);
+            $.ajax({
+                type: 'POST',
+                url: '/admin/houseSearch',
+                data: {'searchInput': searchInput},
+                dataType: 'json',
+                success:function (data) {
+                    if(data.result == 'ok'){
+                        if(data.searchResult){
+                            console.log(data.searchResult[0]);
+                            $.each(data.searchResult, function (key, value) {
+                                html += '<tr>' +
+                                    '<td><a href="">'+value.renting_id+
+                                    '</a></td><td>'+value.renting_title+
+                                    '</td><td>'+value.region+
+                                    '</td><td>'+value.user_name+' '+value.user_email+
+                                    '</td><td>'+value.release_time+
+                                    '</td><td class="text-center">'+
+                                    '<div class="layui-btn-group">' +
+                                    '    <button class="layui-btn layui-btn-xs layui-btn-normal dw-dailog" dw-url="create.html?id=1" dw-title="编辑用户">' +
+                                    '        <i class="layui-icon">&#xe642;</i>编辑' +
+                                    '    </button>' +
+                                    '    <button class="layui-btn layui-btn-xs layui-btn-danger dw-delete"  title='+value.renting_id+'>' +
+                                    '        <i class="layui-icon">&#xe640;</i>删除' +
+                                    '    </button>' +
+                                    '</div>' +
+                                    '</td></tr>';
+                            });
+                            $('tbody').html(html);
+                        }else{
+                            layer.alert('没有查询到数据');
+                        }
+                    }else{
+                        layer.alert('没有查到有关该信息的房源信息');
+                    }
+                },
+                error:function (jqXHR) {
+                    layer.alert('网络中断，请稍后再试');
+                    window.location.href = window.location.href
+                }
+            });
+        });
+    });
+</script>
+
+
+
+<!--<script type="text/javascript">-->
+   <!--$('.dw-delete').click(function (){-->
+       <!--var title = $(this).attr('title');-->
+       <!--$.ajax({-->
+           <!--type: 'POST',-->
+           <!--url: '/admin/houseDelete',-->
+           <!--data: {'renting_id': title},-->
+           <!--dataType: 'json',-->
+           <!--success:function (data) {-->
+               <!--if(data.result == 'ok'){-->
+                   <!--alert('删除成功');-->
+               <!--}else{-->
+                   <!--alert('删除失败');-->
+               <!--}-->
+           <!--},-->
+           <!--error:function (jqXHR) {-->
+               <!--alert('网络出错了');-->
+           <!--}-->
+       <!--});-->
+   <!--});-->
+
+<!--</script>-->
+</html>
